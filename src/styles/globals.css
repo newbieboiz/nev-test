@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+    color: black;
+  }
+
+  summary::marker {
+    @apply content-[''];
+  }
+}
+
+@layer utilities {
+  .bg-gradient-1 {
+    background-image: linear-gradient(to bottom, #00000080, #00000000);
+  }
+
+  .bg-gradient-2 {
+    background-image: linear-gradient(to top, #00000080, #00000000);
+  }
+}
+
+@layer components {
+  .gradient-top-el {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to bottom, #00000080, #00000000);
+  }
+  .gradient-bottom-el {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 170px;
+    background-image: linear-gradient(to top, #00000080, #00000000);
+  }
+
+  .carousel__control {
+    @apply flex items-center gap-2 text-white;
+  }
+  .carousel__dot {
+    @apply w-2 h-2 bg-current opacity-50 rounded-full;
+  }
+  .carousel__dot--active {
+    @apply w-2.5 h-2.5 opacity-100 relative;
+  }
+  .carousel__dot--active::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid currentColor;
+    background-color: transparent;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+  }
+
+  .nav__item {
+    @apply text-sm text-white uppercase opacity-50 relative h-full flex items-center transition-all;
+  }
+
+  .nav__item:hover {
+    @apply opacity-100;
+  }
+
+  .nav__item--active {
+    @apply opacity-100;
+  }
+
+  .nav__item--active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+  }
+
+  .h-menu__item {
+    @apply w-full min-w-20 h-20 flex flex-col items-center justify-center gap-1 text-black opacity-40 leading-none text-xs uppercase border-b border-gray-300;
+  }
+
+  .h-menu__item--active {
+    @apply opacity-100 border-black;
+  }
+
+  .h-menu__item-icon {
+    @apply w-5 h-5;
+  }
+
+  .v-menu__item {
+    @apply w-full h-8 flex items-center gap-1 text-black opacity-40 leading-none text-sm capitalize;
+  }
+
+  .v-menu__item--active {
+    @apply opacity-100 border-black;
+  }
+
+  .v-menu__item-icon {
+    @apply w-5 h-5;
+  }
+}
